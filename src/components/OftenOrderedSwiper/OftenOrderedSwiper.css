@@ -1,0 +1,56 @@
+
+.swiper{
+    overflow: visible;
+    transform: scaleY(0);
+    transition: 0.3s;
+    position: sticky;
+    position: absolute;
+    top: 0;
+}
+
+
+.swiper-slide{
+    max-width: 300px;
+    height: 110px;
+    /* background-color: gray; */
+
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    transition: 0.3s;
+    transition-property: box-shadow, background-color;
+}
+
+.swiper-slide:hover{
+    background-color: rgba(0, 0, 0, 0.01);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.swiper-slide:nth-of-type(1){
+    max-width: 90px;
+    background: none;
+
+    box-shadow: none;
+}
+
+
+.swiper-slide img{
+    height: 100%;
+
+    border-radius: 100px;
+}
+
+
+
+.swiper-slide > div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

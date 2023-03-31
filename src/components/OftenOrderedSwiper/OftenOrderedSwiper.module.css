@@ -1,0 +1,46 @@
+.wrapper{
+    min-height: 250px;
+
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+
+    position: relative;
+
+    overflow-x: hidden;
+}
+
+h2{
+    font-weight: 500;
+}
+
+
+.swiperStart{
+    width: 300px;
+    height: 100px;
+}
+
+
+
+.halal{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+.halal img{
+    width: 45px;
+}
+
+
+
+.halal div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}

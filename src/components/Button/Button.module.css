@@ -1,0 +1,46 @@
+.wrapper{
+    padding: 10px 30px;
+
+    background-color: rgb(255, 105, 0);
+    border: none;
+    border-radius: 100px;
+
+    color: white;
+    font-size: 1em;
+    font-weight: 400;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.wrapper:hover{
+    background-color: rgb(220, 91, 0);
+}
+
+
+.second{
+    background-color: rgba(255, 106, 0, 0.2)!important;
+    color: rgb(217, 91, 0);
+}
+
+.second:hover{
+    background-color: rgba(255, 106, 0, 0.4)!important;
+}
+
+
+.third{
+    background-color: rgba(0, 0, 0, 0.1)!important;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.third:hover{
+    color: rgba(0, 0, 0, 1);
+}
+
+
+.disabled{
+    background-color: rgba(0, 0, 0, 0.2)!important;
+    color: rgba(0, 0, 0, 0.5);
+    /* pointer-events: none; */
+    cursor: not-allowed;
+}

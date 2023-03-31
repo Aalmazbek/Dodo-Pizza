@@ -1,0 +1,184 @@
+
+
+
+
+
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.wrapper header{
+    height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.wrapper header > div{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.wrapper header > div:nth-of-type(1) > img{
+    width: 250px;
+}
+
+.wrapper header > div h2{
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.wrapper header > div:nth-of-type(1) > div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+
+.wrapper header > div .rating p{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+.wrapper header > div .phone p{
+    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: -1px;
+}
+
+
+
+
+.personals{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    gap: 30px!important;
+
+    /* font-size: 0.9em; */
+}
+
+
+.personals > a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    /* gap: -10px; */
+}
+
+.personals > a:hover{
+    color: rgb(255, 105, 0);
+}
+
+
+.personals > a > span{
+    width: 30px;
+    margin-bottom: -5px;
+}
+
+
+
+.personals > a > p{
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+
+
+
+
+
+.wrapper nav{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.wrapper nav > div{
+    height: 100%;
+}
+
+
+.wrapper nav .left ul{
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+.wrapper nav .left ul li{
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.wrapper nav .left ul li p{
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.wrapper nav .left ul li p:hover{
+    color: rgb(255, 105, 0);
+}
+
+
+
+.wrapper nav .left ul li:last-of-type{
+    margin-left: 15px;
+}
+
+.wrapper nav .left ul li:last-of-type p::before{
+    content: " ";
+    width: 9px;
+    height: 9px;
+
+    background: rgb(255, 105, 0);
+    position: absolute;
+    left: -14px;
+
+    border-radius: 10px;
+
+    /* transition: 1s; */
+    animation: 2s blink linear infinite;
+}
+
+
+
+
+
+@keyframes blink{
+    0%{
+        background-color: rgb(255, 105, 0);
+    }
+    50%{
+        background-color: rgba(255, 105, 0, 0);
+    }
+    100%{
+        background-color: rgb(255, 105, 0);
+    }
+}
