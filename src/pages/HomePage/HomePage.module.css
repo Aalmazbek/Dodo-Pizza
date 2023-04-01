@@ -1,0 +1,13 @@
+
+
+
+.pizzasSection{
+    margin-top: 80px;
+}
+
+
+.pizzasWrapper{
+    display: flex;
+    flex-wrap: wrap;
+
+}

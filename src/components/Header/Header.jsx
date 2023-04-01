@@ -2,6 +2,7 @@
 import css from './Header.module.css'
 import Button from '../Button/Button'
 import logo from '../../assets/logo.svg'
+import { Link } from 'react-router-dom'
 // import headerStar from '../../assets/headerStar.svg'
 
 
@@ -11,7 +12,9 @@ const Header = () => {
         <div className={css.wrapper + " container"}>
             <header>
                 <div>
-                    <img src={logo} alt="" />
+                    <Link to="/">
+                        <img width={'250px'} src={logo} alt="" />
+                    </Link>
 
                     <div className={css.rating}>
                         <h2>Доставка пиццы Бишкек</h2>
@@ -50,7 +53,7 @@ const Header = () => {
                 <div className={css.left}>
                     <ul>
                         <li>
-                            <p>Пицца</p>
+                            <Link to="/">Пицца</Link>
                         </li>
                         <li>
                             <p>Комбо</p>
@@ -71,10 +74,10 @@ const Header = () => {
                             <p>Акции</p>
                         </li>
                         <li>
-                            <p>Контакты</p>
+                            <Link to="/contacts">Контакты</Link>
                         </li>
                         <li>
-                            <p>О нас</p>
+                            <Link to="/aboutus">О нас</Link>
                         </li>
                         <li>
                             <p>Прямой эфир</p>

@@ -1,0 +1,59 @@
+.wrapper{
+    width: calc(25% - 30px);
+    height: 450px;
+
+    margin: 40px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+
+.wrapper > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.wrapper > div:nth-of-type(2){
+    margin-top: -20px;
+
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.title{
+    margin: 5px 0;
+
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.description{
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 15px;
+    line-height: 22px;
+}
+
+
+
+
+
+.wrapper > div:nth-of-type(1){
+    justify-content: center;
+}
+
+.pizzaImage{
+    width: 95%;
+}
+
+
+
+
+
+.price{
+    font-size: 20px;
+}
