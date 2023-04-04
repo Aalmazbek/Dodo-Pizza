@@ -63,7 +63,7 @@ function CreatePizzaPage() {
         <p>Цена в сомах</p>
         <input type="number" className={css.price} placeholder='Цена' value={price} onChange={(e) => handleChange(e, setPrice)} />
 
-        <Button title='Подтвердить' handleSubmit={handleSubmit} />
+        <Button title='Подтвердить' onClick={() => handleSubmit()} />
       </div>
     </div>
   )

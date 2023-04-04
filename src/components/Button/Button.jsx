@@ -1,6 +1,6 @@
 import css from './Button.module.css'
 
-const Button = ({title, variant, handleSubmit, ...props}) => {
+const Button = ({title, variant, ...props}) => {
     return(
         <button 
             {...props} 
@@ -10,10 +10,9 @@ const Button = ({title, variant, handleSubmit, ...props}) => {
                 ${variant === 'third' ? css.third : ""} 
                 ${variant === 'disabled' ? css.disabled : ""}`
             }
-            onClick={handleSubmit}
-            >
-            {title}
-            </button>
+        >
+        {title}
+        </button>
     )
 }
 
