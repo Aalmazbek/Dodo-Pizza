@@ -133,18 +133,19 @@
 }
 
 
-.wrapper nav .left ul li p{
+.wrapper nav .left ul li p, .wrapper nav .left ul li a{
     height: 100%;
 
     display: flex;
     align-items: center;
     position: relative;
+    color: rgba(0, 0, 0, 0.8);
 
     cursor: pointer;
     transition: 0.3s;
 }
 
-.wrapper nav .left ul li p:hover{
+.wrapper nav .left ul li p:hover, .wrapper nav .left ul li a:hover{
     color: rgb(255, 105, 0);
 }
 

@@ -33,6 +33,9 @@
 }
 
 .description{
+    max-height: 70px;
+    overflow-y: hidden;
+
     color: rgba(0, 0, 0, 0.6);
     font-size: 15px;
     line-height: 22px;

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 
-import css from './HomePage.module.css'
+import css from './AdminPage.module.css'
 import MainSlider from '../../components/MainSlider/MainSlider'
 import OftenOrderedSwiper from '../../components/OftenOrderedSwiper/OftenOrderedSwiper'
 import PizzaCard from '../../components/PizzaCard/PizzaCard'
 import { base_url } from '../../constants/api_constant'
 
 import LoadingBar from 'react-top-loading-bar'
+import Button from '../../components/Button/Button'
+import { Link } from 'react-router-dom'
 
 
 
-
-
-const HomePage = () => {
+function AdminPage() {
     const [pizzasArray, setPizzasArray] = useState([])
     const [progress, setProgress] = useState(0)
     // console.log(pizzasArray);
@@ -33,29 +33,33 @@ const HomePage = () => {
             })
     },[])
 
+    
+
+
 
     return (
-        <>
+        <div className={`container ${css.wrapper}`}>
             <LoadingBar 
                 color={`rgb(255, 105, 0)`} 
                 progress={progress} 
                 onLoaderFinished={() => setProgress(0)} 
             />
 
-            <MainSlider />
-            <OftenOrderedSwiper />
+            <Link to='/admin/create-pizza'>
+                <Button className={css.button} title="+ Добавить пиццу" />
+            </Link>
 
-            <section className={`container pizzasSection`}>
+            <section className={`pizzasSection`}>
                 <div className='title'>Пицца</div>
 
-                <div className='pizzasWrapper'>
+                <div className={"pizzasWrapper"}>
                     {
-                        pizzasArray.map(elem => <PizzaCard key={elem.id} {...elem} />)
+                        pizzasArray.map(elem => <PizzaCard key={elem.id} {...elem} isAdmin={true} setPizzasArray={setPizzasArray} />)
                     }
                 </div>
             </section>
-        </>
+        </div>
   )
 }
 
-export default HomePage
+export default AdminPage

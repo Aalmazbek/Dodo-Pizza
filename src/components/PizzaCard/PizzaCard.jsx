@@ -1,8 +1,28 @@
 import React from 'react'
 import Button from '../Button/Button'
 import css from './PizzaCard.module.css'
+import { base_url } from '../../constants/api_constant'
 
-function PizzaCard({name, description, price, image, variant, button}) {
+function PizzaCard({id, name, description, price, image, variant, button, isAdmin, setPizzasArray}) {
+
+  const deletePizza = (pizzaId) => {
+    const res = window.confirm("Вы действительно хотите удалить " + name + " ?")
+
+    if (res) {
+      fetch(base_url + "pizzas/" + pizzaId, {method: 'DELETE'})
+        .finally(
+          fetch(base_url + "pizzas")
+            .then(response => response.json())
+            .then(data => {
+              let deletedId = data.findIndex(item => item.id === pizzaId)
+              data.splice(deletedId, 1)
+              setPizzasArray(data)
+            })
+        )
+    }
+  }
+
+
   return (
     <div className={css.wrapper}>
         <div>
@@ -15,8 +35,14 @@ function PizzaCard({name, description, price, image, variant, button}) {
         </div>
 
         <div>  
-            <h2 className={css.price}>{price}</h2>
-            <Button title={button} variant={variant} />
+            <h2 className={css.price}>от {Number(price).toFixed(0)} сом</h2>
+            {
+              isAdmin ? (
+                <Button title={"Удалить"} variant={'second'} onClick={() => deletePizza(id)} />
+              ) : (
+                <Button title={"В корзину"} variant={'second'} />
+              )
+            }
         </div>
     </div>
   )

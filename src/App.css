@@ -23,6 +23,9 @@ ul{
 
 
 .container{
+  min-width: 950px;
+  max-width: 1280px;
+  
   margin: 0 8%;
 }
 
@@ -38,4 +41,20 @@ ul{
   color: black;
   font-size: 36px;
   font-weight: 500;
+}
+
+
+
+
+
+
+.pizzasSection{
+  margin-top: 40px;
+}
+
+
+.pizzasWrapper{
+  display: flex;
+  flex-wrap: wrap;
+
 }

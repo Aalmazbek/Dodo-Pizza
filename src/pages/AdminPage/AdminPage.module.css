@@ -1,0 +1,6 @@
+.wrapper > a{
+    width: fit-content;
+    margin-top: 50px;
+
+    display: flex;
+}

@@ -44,6 +44,8 @@ const CustomSlide = (props) => {
 
 const MainSlider = () => {
     const settings = {
+        // className: "slider variable-width",
+        // variableWidth: true,
         dots: false,
         infinite: false,
         speed: 500,
@@ -51,6 +53,29 @@ const MainSlider = () => {
         slidesToScroll: 6,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
+        responsive: [
+            {
+              breakpoint: 1440,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+              }
+            },
+            {
+              breakpoint: 1228,
+              settings: {
+                slidesToShow: 4.5,
+                slidesToScroll: 4,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
     };
     return (
         <div className={css.wrapper + " container"}>

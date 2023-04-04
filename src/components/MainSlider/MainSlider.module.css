@@ -16,10 +16,10 @@
 
 
 .CustomSlide{
-    width: 200px;
+    /* width: 200px; */
     height: 250px;
 
-    padding: 0 8px;
+    /* padding: 0 6px; */
 
     display: flex!important;
     align-items: center;
@@ -40,8 +40,8 @@
 }
 
 .CustomSlide > div img{
-    width: 190px;
-    height: 237px;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
     border-radius: 20px;
 }
 
