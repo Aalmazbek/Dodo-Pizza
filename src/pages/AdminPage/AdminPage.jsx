@@ -8,11 +8,16 @@ import { base_url } from '../../constants/api_constant'
 
 import LoadingBar from 'react-top-loading-bar'
 import Button from '../../components/Button/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
-function AdminPage() {
+function AdminPage({ isLoggedIn }) {
+    const navigate = useNavigate()
+    if (!isLoggedIn) {
+        navigate('/login-page')
+    }
+
     const [pizzasArray, setPizzasArray] = useState([])
     const [progress, setProgress] = useState(0)
     // console.log(pizzasArray);
