@@ -6,6 +6,7 @@ import LoadingBar from 'react-top-loading-bar'
 
 import css from './CreatePizzaPage.module.css'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 
 function checkSpaces(str) {
@@ -13,7 +14,17 @@ function checkSpaces(str) {
 }
 
 
-function CreatePizzaPage() {
+function CreatePizzaPage({ setIsProdCreated }) {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setProgress(30)
+    setTimeout(() => {
+      setProgress(100)
+    }, 300)
+  },[])
+
+
   const [progress, setProgress] = useState(0)
 
   const [isSending, setSending] = useState(false)
@@ -23,7 +34,6 @@ function CreatePizzaPage() {
   const [image, setImage] = useState('')
   const [price, setPrice] = useState('')
 
-  const navigate = useNavigate()
 
   const handleChange = (e, setValue) => {
     setValue(e.target.value)
@@ -66,6 +76,7 @@ function CreatePizzaPage() {
       })
       .then(res => {
         if (res.status) {
+          setIsProdCreated(true)
           navigate('/admin')
         }
       })

@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../Button/Button'
 import css from './PizzaCard.module.css'
 import { base_url } from '../../constants/api_constant'
+import axios from 'axios'
 
 function PizzaCard({id, name, description, price, image, variant, button, isAdmin, setPizzasArray}) {
 
@@ -9,16 +10,27 @@ function PizzaCard({id, name, description, price, image, variant, button, isAdmi
     const res = window.confirm("Вы действительно хотите удалить " + name + " ?")
 
     if (res) {
-      fetch(base_url + "pizzas/" + pizzaId, {method: 'DELETE'})
+      axios.delete(base_url + 'pizzas/' + pizzaId)
         .finally(
-          fetch(base_url + "pizzas")
-            .then(response => response.json())
-            .then(data => {
-              let deletedId = data.findIndex(item => item.id === pizzaId)
-              data.splice(deletedId, 1)
-              setPizzasArray(data)
+          axios.get(base_url + 'pizzas')
+            .then(res => {
+              const deletedId = (res.data).findIndex(item => item.id === pizzaId)
+              res.data.splice(deletedId, 1)
+              setPizzasArray(res.data)
             })
         )
+        
+
+      // fetch(base_url + "pizzas/" + pizzaId, {method: 'DELETE'})
+      //   .finally(
+      //     fetch(base_url + "pizzas")
+      //       .then(response => response.json())
+      //       .then(data => {
+      //         let deletedId = data.findIndex(item => item.id === pizzaId)
+      //         data.splice(deletedId, 1)
+      //         setPizzasArray(data)
+      //       })
+      //   )
     }
   }
 

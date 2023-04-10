@@ -1,42 +1,73 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+import LoadingBar from 'react-top-loading-bar'
+import { ToastContainer, toast, Flip } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 import css from './AdminPage.module.css'
 import MainSlider from '../../components/MainSlider/MainSlider'
 import OftenOrderedSwiper from '../../components/OftenOrderedSwiper/OftenOrderedSwiper'
 import PizzaCard from '../../components/PizzaCard/PizzaCard'
 import { base_url } from '../../constants/api_constant'
-
-import LoadingBar from 'react-top-loading-bar'
 import Button from '../../components/Button/Button'
-import { Link, useNavigate } from 'react-router-dom'
 
 
 
-function AdminPage({ isLoggedIn }) {
+
+
+function AdminPage({ isProdCreated, setIsProdCreated, pizzasSection }) {
     const navigate = useNavigate()
-    if (!isLoggedIn) {
-        navigate('/login-page')
-    }
 
     const [pizzasArray, setPizzasArray] = useState([])
     const [progress, setProgress] = useState(0)
     // console.log(pizzasArray);
 
     useEffect(() => {
+        if (isProdCreated) {
+            setIsProdCreated(false)
+            notify()
+        }
+
         setProgress(30)
         setTimeout(() => {
             setProgress(60)
         }, 100)
-        fetch(base_url + "pizzas")
-            .then(response => response.json())
-            .then(data => {
-                // pizzasArray = data
-                setPizzasArray(data)
+
+        axios.get(base_url + 'pizzas')
+            .then(response => {
+                setPizzasArray(response.data)
             })
             .finally(() => {
                 setProgress(100)
             })
+
+        // fetch(base_url + "pizzas")
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // pizzasArray = data
+        //         setPizzasArray(data)
+        //     })
+        //     .finally(() => {
+        //         setProgress(100)
+        //     })
     },[])
+
+
+    const notify = () => {
+        return (
+            toast.success('Пицца добавлена', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                theme: "light",
+            })
+        )
+    }
 
     
 
@@ -54,7 +85,7 @@ function AdminPage({ isLoggedIn }) {
                 <Button className={css.button} title="+ Добавить пиццу" />
             </Link>
 
-            <section className={`pizzasSection`}>
+            <section className={`pizzasSection`} ref={pizzasSection}>
                 <div className='title'>Пицца</div>
 
                 <div className={"pizzasWrapper"}>
@@ -63,6 +94,20 @@ function AdminPage({ isLoggedIn }) {
                     }
                 </div>
             </section>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover={false}
+                theme="light"
+                transition={Flip}
+            />            
         </div>
   )
 }

@@ -1,7 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { ToastContainer, toast, Flip } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 import Button from '../../components/Button/Button'
+import css from './LoginPage.module.css'
 
 
 let account = {
@@ -9,9 +14,12 @@ let account = {
     password: 'admin'
 }
 
-function LoginPage({ setIsLoggedIn }) {
+function LoginPage({ setAuth }) {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
+
+    const [isLoginValid, setIsLoginValid] = useState(0)
+    const [isPasswordValid, setIsPasswordValid] = useState(false)
 
     const navigate = useNavigate()
 
@@ -19,27 +27,89 @@ function LoginPage({ setIsLoggedIn }) {
         e.preventDefault()
 
         if (account.login === login && account.password === password) {
-            setIsLoggedIn(true)
-            navigate('/admin')
+            setAuth(true)
+        }   else{
+            notify()
+            setLogin('')
+            setPassword('')
+            // alert('Неверные данные')
+            // window.location.reload(false)
         }
     }
 
-     return (
-        <div className='container'>
+    const notify = () => {
+        return (
+            toast.error('Неверные данные', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                theme: "light",
+            })
+        )
+    }
+
+
+    return (
+        <div className={`container ${css.wrapper}`}>
             <h1>Вход</h1>
             <form onSubmit={submit}>
                 <label>
                     <p>Логин</p>
-                    <input type="text" onChange={(e) => setLogin(e.target.value)} />
+                    <input type="text" value={login} onChange={(e) => {
+                        let str = e.target.value
+                        if (isLoginValid < 1 && str.trim()) {
+                            setLogin(str)
+                            setIsLoginValid(str.length)
+                            // console.log(str.length);
+                        }   else if (isLoginValid === 1 && str === "") {
+                            setLogin(str)
+                            setIsLoginValid(str.length)
+                            // console.log("пусто");
+                        }   else if (isLoginValid >= 1) {
+                            setLogin(str)
+                            setIsLoginValid(str.length)
+                        }
+                    }} required />
                 </label>
 
                 <label>
                     <p>Пароль</p>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" value={password} onChange={(e) => {
+                        let str = e.target.value
+                        if (isPasswordValid < 1 && str.trim()) {
+                            setPassword(str)
+                            setIsPasswordValid(str.length)
+                            // console.log(str.length);
+                        }   else if (isPasswordValid === 1 && str === "") {
+                            setPassword(str)
+                            setIsPasswordValid(str.length)
+                            // console.log("пусто");
+                        }   else if (isPasswordValid >= 1) {
+                            setPassword(str)
+                            setIsPasswordValid(str.length)
+                        }
+                    }} required />
                 </label>
 
                 <Button title="Войти" type="submit" />
             </form>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover={false}
+                theme="light"
+                transition={Flip}
+            />
         </div>
     )
 }

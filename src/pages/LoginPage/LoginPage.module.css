@@ -1,0 +1,45 @@
+.wrapper{
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.wrapper form{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+
+
+.wrapper form label{
+    width: 100%;
+}
+
+
+.wrapper form label p{
+    margin: 5px;
+    font-size: 18px;
+}
+
+
+.wrapper form label input{
+    width: 100%;
+    height: 30px;
+
+    padding: 10px;
+
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.wrapper form button{
+    width: 150px;
+
+    margin-top: 20px;
+
+}

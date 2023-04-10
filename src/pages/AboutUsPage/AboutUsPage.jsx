@@ -1,6 +1,13 @@
 import React from 'react'
+import { useEffect } from 'react'
 
-function AboutUsPage() {
+function AboutUsPage({ setPath }) {
+
+  useEffect(() => {
+    setPath('/aboutus')
+  })
+
+
   return (
     <div>AboutUsPage</div>
   )

@@ -22,6 +22,14 @@ ul{
 
 
 
+
+.nav-shadow{
+  box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
 .container{
   min-width: 950px;
   max-width: 1280px;
@@ -49,7 +57,9 @@ ul{
 
 
 .pizzasSection{
+  /* padding-top: 90px; */
   margin-top: 40px;
+  scroll-margin-top: 80px;
 }
 
 
