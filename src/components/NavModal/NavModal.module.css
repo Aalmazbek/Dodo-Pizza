@@ -1,0 +1,167 @@
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+
+    pointer-events: none;
+}
+
+.background{
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    pointer-events: all;
+}
+
+.backDisabled{
+    background: none;
+    pointer-events: none;
+}
+
+
+
+.content{
+    width: 430px;
+    height: 100%;
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+
+    background-color: white;
+
+    pointer-events: all;
+
+    transition: transform 0.4s;
+    transform: translateX(0);
+}
+
+
+.emptyCart{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+    position: relative;
+}
+
+
+.emptyCart img{
+    width: 78%;
+}
+
+.emptyCart > div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.emptyCart > div p:first-of-type{
+    font-size: 22px;
+}
+
+.emptyCart > div p{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+
+
+.emptyCart button{
+    position: absolute;
+    left: -17%;
+    transition: 0.3s;
+}
+
+
+.emptyCart button svg{
+    transition: 0.5s;
+}
+
+.emptyCart button svg:hover{
+    transform: rotate(180deg);
+}
+
+.hideButton{
+    opacity: 0;
+}
+
+
+
+
+
+.content > div{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.card{
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.contentDisabled{
+    pointer-events: none;
+    transition: transform 0.4s;
+    transform: translateX(100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @keyframes rotation {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(180deg);
+    }
+} */

@@ -8,6 +8,7 @@ const Button = ({title, variant, ...props}) => {
                 `${css.wrapper} 
                 ${variant === 'second' ? css.second : ""} 
                 ${variant === 'third' ? css.third : ""} 
+                ${variant === 'fourth' ? css.fourth : ""} 
                 ${variant === 'disabled' ? css.disabled : ""}`
             }
         >

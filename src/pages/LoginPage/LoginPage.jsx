@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,7 +15,7 @@ let account = {
     password: 'admin'
 }
 
-function LoginPage({ setAuth }) {
+function LoginPage({ setPath, setAuth }) {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
@@ -36,6 +37,10 @@ function LoginPage({ setAuth }) {
             // window.location.reload(false)
         }
     }
+
+    useEffect(() => {
+        setPath('/login')
+    }, [])
 
     const notify = () => {
         return (

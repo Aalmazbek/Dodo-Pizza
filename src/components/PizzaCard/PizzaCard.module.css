@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
 
+    cursor: pointer;
 }
 
 
@@ -51,6 +52,7 @@
 
 .pizzaImage{
     width: 95%;
+    transition: 0.2s;
 }
 
 

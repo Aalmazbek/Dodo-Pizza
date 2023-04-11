@@ -9,6 +9,7 @@ import { base_url } from '../../constants/api_constant'
 import LoadingBar from 'react-top-loading-bar'
 import axios from 'axios'
 import { useRef } from 'react'
+import { getPizzas } from '../../api/api'
 
 
 
@@ -25,7 +26,7 @@ const HomePage = ({ pizzasSection, setPath }) => {
         setTimeout(() => {
             setProgress(60)
         }, 100)
-        axios.get(base_url + "pizzas")
+        getPizzas()
             .then(response => setPizzasArray(response.data))
             .finally(() => {
                 setProgress(100)

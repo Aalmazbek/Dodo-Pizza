@@ -7,6 +7,8 @@ import LoadingBar from 'react-top-loading-bar'
 import css from './CreatePizzaPage.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import axios from 'axios'
+import { postPizza } from '../../api/api'
 
 
 function checkSpaces(str) {
@@ -14,10 +16,12 @@ function checkSpaces(str) {
 }
 
 
-function CreatePizzaPage({ setIsProdCreated }) {
+function CreatePizzaPage({ setPath, setIsProdCreated }) {
   const navigate = useNavigate()
 
   useEffect(() => {
+    setPath('/admin/create-pizza')
+
     setProgress(30)
     setTimeout(() => {
       setProgress(100)
@@ -63,23 +67,28 @@ function CreatePizzaPage({ setIsProdCreated }) {
     }
     console.log(data);
 
-    let fetchData = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    }
+    let fetchData = {headers: { "Content-Type": "application/json" }}
 
-    fetch(base_url + "pizzas", fetchData)
-      .finally(() => {
-        setSending(false)
+    if (data.type == 'Пицца') {
+      postPizza(data, fetchData)
+        .finally(() => {
+          setSending(false)
+          setProgress(100)
+        })
+        .then(res => {
+          if (res.status) {
+            setIsProdCreated(true)
+            navigate('/admin')
+          }
+        })
+    } else{
+      setTimeout(() => {
         setProgress(100)
-      })
-      .then(res => {
-        if (res.status) {
-          setIsProdCreated(true)
-          navigate('/admin')
-        }
-      })
+        setSending(false)
+        alert('Пока только пиццы')
+      }, 300)
+    }
+    // fetch(base_url + "pizzas", fetchData)
         
   }
   

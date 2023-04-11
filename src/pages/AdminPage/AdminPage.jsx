@@ -12,12 +12,13 @@ import OftenOrderedSwiper from '../../components/OftenOrderedSwiper/OftenOrdered
 import PizzaCard from '../../components/PizzaCard/PizzaCard'
 import { base_url } from '../../constants/api_constant'
 import Button from '../../components/Button/Button'
+import { getPizzas } from '../../api/api';
 
 
 
 
 
-function AdminPage({ isProdCreated, setIsProdCreated, pizzasSection }) {
+function AdminPage({ setPath, isProdCreated, setIsProdCreated, pizzasSection }) {
     const navigate = useNavigate()
 
     const [pizzasArray, setPizzasArray] = useState([])
@@ -25,6 +26,8 @@ function AdminPage({ isProdCreated, setIsProdCreated, pizzasSection }) {
     // console.log(pizzasArray);
 
     useEffect(() => {
+        setPath('/contacts')
+
         if (isProdCreated) {
             setIsProdCreated(false)
             notify()
@@ -35,7 +38,7 @@ function AdminPage({ isProdCreated, setIsProdCreated, pizzasSection }) {
             setProgress(60)
         }, 100)
 
-        axios.get(base_url + 'pizzas')
+        getPizzas()
             .then(response => {
                 setPizzasArray(response.data)
             })

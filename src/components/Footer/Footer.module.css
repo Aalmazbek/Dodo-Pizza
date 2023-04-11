@@ -1,0 +1,206 @@
+.wrapper{
+}
+
+
+.questionary{
+    height: 60px;
+
+    background-color: rgb(255, 105, 0);
+
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+
+.questionary > div{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.questionary > div p{
+    font-size: 18px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+.content{
+    background-color: rgb(24,24,24);
+
+    padding: 30px 8% 20px 8%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.content *{
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+.content > div{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.links > div{
+    max-width: 200px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.links > div h4, .links > div h1{
+    color: white;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.links > div h1{
+    font-size: 28px;
+}
+
+.links > div a:hover{
+    color: white;
+}
+
+
+.links > div:last-of-type{
+    max-width: none;
+
+    margin-left: 15%;
+    align-items: flex-end;
+}
+
+
+.links > div:last-of-type p{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.mobileOperatorsButtons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobileOperatorsButtons > button > img{
+    filter: grayscale(0.9);
+}
+
+.selected{
+    filter: grayscale(0)!important;
+}
+
+
+.megacom{
+    height: 15px;
+}
+
+.O{
+    height: 19px;
+}
+
+.landlinePhone{
+    height: 20px;
+}
+
+
+
+
+
+.payment{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.payment > div{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.payment > div p{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.payment > div img{
+    width: 250px;
+}
+
+
+
+
+
+.copyright{
+
+    padding: 25px 0 0 0;
+    justify-content: space-between;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright *{
+    white-space: nowrap;
+}
+
+
+.copyright > div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.copyright > div svg{
+    height: 28px;
+    fill: rgba(255, 255, 255, 0.6);
+}
+
+.copyright > div p, .copyright > div a{
+}
+
+
+.copyright > div:last-of-type a{
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+}
+
+.copyright > div:last-of-type a:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.copyright > div:last-of-type a svg{
+    width: 80%;
+}

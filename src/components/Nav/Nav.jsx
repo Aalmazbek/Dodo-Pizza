@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { forwardRef } from 'react'
 
 import css from './Nav.module.css'
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import { useRef } from 'react'
+import NavModal from '../NavModal/NavModal'
 
-const Nav = forwardRef(({ scrollTo, pizzasSection }, ref) => {
+const Nav = forwardRef(({ scrollTo, pizzasSection, isCart, setIsCart }, ref) => {
 
   return (
     <div id='navigation' ref={ref} className={`${css.wrapper}`}>
@@ -39,7 +40,7 @@ const Nav = forwardRef(({ scrollTo, pizzasSection }, ref) => {
                         <p>Другие товары</p>
                     </li>
                     <li>
-                        <p>Акции</p>
+                        <Link to='/bonus-actions'>Акции</Link>
                     </li>
                     <li>
                         <Link to="/contacts">Контакты</Link>
@@ -53,10 +54,16 @@ const Nav = forwardRef(({ scrollTo, pizzasSection }, ref) => {
                 </ul>
             </div>
 
+
             <div className={css.right}>
-                <Button title="Корзина"/>
+                <Button title="Корзина" onClick={() => setIsCart(!isCart)} />
             </div>
         </nav>
+
+        {/* <div className={css.cart + (!isCart ? css.disabled : null)}>
+            <div className={css.cartBackground}></div>
+            <div className={css.cartContent}></div>
+        </div> */}
     </div>
   )
 })

@@ -1,10 +1,17 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import css from './NotFoundPage.module.css'
 
 
-function NotFoundPage() {
+function NotFoundPage({ setPath }) {
+
+  useEffect(() => {
+    setPath('*')
+  }, [])
+
+
   return (
     <div className={css.wrapper}>
       <Link to='/'>
