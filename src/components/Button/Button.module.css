@@ -43,6 +43,10 @@
     color: rgb(217, 91, 0);
 }
 
+.fourth:hover{
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
 
 .disabled{
     background-color: rgba(0, 0, 0, 0.2)!important;
