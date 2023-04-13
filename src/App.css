@@ -67,7 +67,40 @@ ul{
 
 
 .pizzasWrapper{
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+  .container{
+    min-width: 0px;
+
+    margin: 0 1%;
+  }
+
+
+  .pizzasSection{
+    scroll-margin-top: 30px;
+  }
 }

@@ -1,28 +1,39 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ModalCard from './components/ModalCard'
 import ModalHeader from './components/ModalHeader'
+import ModalResult from './components/ModalResult'
 
 import css from './NavModal.module.css'
 
 function NavModal({ cart, isCart, setIsCart }) {
 
+    const data = useSelector(state => state.cart.data)
+
+
   return (
     <div className={`${css.wrapper}`}>
         <div className={`${css.background} ${isCart ? "" : css.backDisabled}`} onClick={() => setIsCart(!isCart)} ></div>
         <div className={`${css.content} ${isCart ? "" : css.contentDisabled}`}>
-            {cart.length > 0 ? (
+            {data.length > 0 ? (
                 <>
-                    <ModalHeader />
+                    <div className={css.header_cardsWrapper_container}>
+                        <ModalHeader />
 
-                    <div className={css.cardsWrapper}>
-                        {
-                            cart.map(elem => (
-                                <ModalCard elem={elem} />
-                            ))
-                        }
+                        <div className={css.cardsWrapper}>
+                            {
+                                data.map(elem => (
+                                    <ModalCard key={Math.random()*(new Date().getTime()) + elem.id} elem={elem} />
+                                ))
+                            }
+                        </div>
                     </div>
 
-                    <ModalHeader />
+                    <ModalResult />
+
+                    <button className={`${css.closeButton} ${!isCart ? css.hideButton : ''}`} onClick={() => setIsCart(!isCart)}>
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none"><path fillRule="evenodd" clipRule="evenodd" d="M9.61 12.199L.54 3.129A1.833 1.833 0 113.13.536l9.07 9.07L21.27.54a1.833 1.833 0 012.592 2.592l-9.068 9.068 9.07 9.07a1.833 1.833 0 01-2.59 2.592l-9.072-9.07-9.073 9.073a1.833 1.833 0 01-2.591-2.592L9.61 12.2z" fill="#fff"></path></svg>
+                    </button>
                 </>
             ) : (
                 <div className={css.emptyCart}>
@@ -34,7 +45,7 @@ function NavModal({ cart, isCart, setIsCart }) {
                             Мы доставим ваш заказ от 365 сом</p>
                     </div>
 
-                    <button className={`${!isCart ? css.hideButton : ''}`} onClick={() => setIsCart(!isCart)}>
+                    <button className={`${css.closeButton} ${!isCart ? css.hideButton : ''}`} onClick={() => setIsCart(!isCart)}>
                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none"><path fillRule="evenodd" clipRule="evenodd" d="M9.61 12.199L.54 3.129A1.833 1.833 0 113.13.536l9.07 9.07L21.27.54a1.833 1.833 0 012.592 2.592l-9.068 9.068 9.07 9.07a1.833 1.833 0 01-2.59 2.592l-9.072-9.07-9.073 9.073a1.833 1.833 0 01-2.591-2.592L9.61 12.2z" fill="#fff"></path></svg>
                     </button>
                 </div>

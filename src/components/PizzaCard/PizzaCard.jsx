@@ -4,6 +4,9 @@ import css from './PizzaCard.module.css'
 import { base_url } from '../../constants/api_constant'
 import axios from 'axios'
 import { deletePizza, getPizzas } from '../../api/api'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, deleteFromCart } from '../../redux'
+import CountButton from '../CountButton/CountButton'
 
 function PizzaCard({id, name, description, price, image, variant, button, isAdmin, setPizzasArray}) {
 
@@ -35,6 +38,35 @@ function PizzaCard({id, name, description, price, image, variant, button, isAdmi
     }
   }
 
+  let data = useSelector(state => state.cart.data)
+  let amount = ''
+  if (data[data.findIndex(item => item.id === id)]) {
+    amount = data[data.findIndex(item => item.id == id)].amount
+  }
+  const totalAmount = data.reduce((sum, curr) => sum += curr.amount, 0)
+  const dispatch = useDispatch()
+
+  const handleAddToCart = () => {
+    if (totalAmount === 100) {
+      return
+    }
+    dispatch(addToCart({
+      id,
+      name,
+      description,
+      price,
+      image,
+      amount: 1
+    }))
+  }
+
+  const deleteProd = () => {
+    setTimeout(() => {
+      dispatch(deleteFromCart(id))
+    }, 500)
+  }
+
+
 
   const handleOnMouseEnter = (e) => {
     e.target.style.transform = 'translateY(5px)'
@@ -63,7 +95,11 @@ function PizzaCard({id, name, description, price, image, variant, button, isAdmi
               isAdmin ? (
                 <Button title={"Удалить"} variant={'second'} onClick={() => deletePizzaFunc(id)} />
               ) : (
-                <Button title={"В корзину"} variant={'second'} />
+                amount ? (
+                  <CountButton amount={amount} id={id} deleteProd={deleteProd} />
+                ) : (
+                  <Button title={`В корзину ${amount ? amount : ''}`} variant={'second'} onClick={handleAddToCart} />
+                )
               )
             }
         </div>

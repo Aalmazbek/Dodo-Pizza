@@ -1,9 +1,15 @@
 .wrapper{
-    padding: 10px 30px;
+    height: 40px;
+    padding: 5px 30px;
 
     background-color: rgb(255, 105, 0);
     border: none;
     border-radius: 100px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
 
     color: white;
     font-size: 1em;
@@ -13,8 +19,17 @@
     transition: 0.3s;
 }
 
+.wrapper *{
+    color: white;
+}
+
+
 .wrapper:hover{
     background-color: rgb(220, 91, 0);
+}
+
+.wrapper:active{
+    color: rgba(255, 255, 255, 0.3);
 }
 
 
@@ -25,6 +40,10 @@
 
 .second:hover{
     background-color: rgba(255, 106, 0, 0.4)!important;
+}
+
+.second:active{
+    color: rgba(217, 91, 0, 0.3)!important;
 }
 
 
@@ -47,10 +66,40 @@
     background-color: rgba(255, 255, 255, 0.6);
 }
 
+.fourth:active{
+    color: rgba(217, 91, 0, 0.3);
+}
+
 
 .disabled{
     background-color: rgba(0, 0, 0, 0.2)!important;
     color: rgba(0, 0, 0, 0.5);
     /* pointer-events: none; */
     cursor: not-allowed;
+}
+
+
+
+
+
+.wrapper hr{
+    width: 1px;
+    height: 90%;
+
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+}
+
+
+.wrapper > p{
+    transition: 0.3s;
+}
+
+
+.arrow{
+    position: absolute;
+    right: 17%;
+
+    transition: 0.3s;
+    opacity: 0;
 }

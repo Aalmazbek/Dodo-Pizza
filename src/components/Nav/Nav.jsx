@@ -6,8 +6,25 @@ import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import { useRef } from 'react'
 import NavModal from '../NavModal/NavModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { decremented, incremented } from '../../redux'
 
 const Nav = forwardRef(({ scrollTo, pizzasSection, isCart, setIsCart }, ref) => {
+
+    let data = useSelector(state => state.cart.data)
+    const totalAmount = data.reduce((sum, curr) => sum += curr.amount, 0)
+
+    // const number = useSelector((state) => state.counter.value)
+    // const dispatch = useDispatch()
+
+    // const numberPlus = () => {
+    //     dispatch(incremented())
+    // }
+
+    // const numberMinus = () => {
+    //     dispatch(decremented())
+    // }
+
 
   return (
     <div id='navigation' ref={ref} className={`${css.wrapper}`}>
@@ -56,7 +73,9 @@ const Nav = forwardRef(({ scrollTo, pizzasSection, isCart, setIsCart }, ref) => 
 
 
             <div className={css.right}>
-                <Button title="Корзина" onClick={() => setIsCart(!isCart)} />
+                <Button title={`Корзина`} totalAmount={totalAmount} onClick={() => setIsCart(!isCart)} />
+                {/* <Button title='+' onClick={numberPlus} />
+                <Button title='-' onClick={numberMinus} /> */}
             </div>
         </nav>
 
