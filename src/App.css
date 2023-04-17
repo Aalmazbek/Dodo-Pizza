@@ -92,6 +92,8 @@ ul{
   top: 0;
   left: 0;
   z-index: 300;
+  
+  pointer-events: none;
 
   pointer-events: none;
 
