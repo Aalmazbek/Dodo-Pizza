@@ -13,6 +13,7 @@ import PizzaCard from '../../components/PizzaCard/PizzaCard'
 import { base_url } from '../../constants/api_constant'
 import Button from '../../components/Button/Button'
 import { getPizzas } from '../../api/api';
+import { useSelector } from 'react-redux';
 
 
 
@@ -20,41 +21,15 @@ import { getPizzas } from '../../api/api';
 
 function AdminPage({ setPath, isProdCreated, setIsProdCreated, pizzasSection }) {
     const navigate = useNavigate()
-
-    const [pizzasArray, setPizzasArray] = useState([])
-    const [progress, setProgress] = useState(0)
-    // console.log(pizzasArray);
+    const { progress, pizzasData: pizzasArray, isLoading, error } = useSelector(state => state.pizzas)
 
     useEffect(() => {
-        setPath('/contacts')
+        setPath('/admin')
 
         if (isProdCreated) {
             setIsProdCreated(false)
             notify()
         }
-
-        setProgress(30)
-        setTimeout(() => {
-            setProgress(60)
-        }, 100)
-
-        getPizzas()
-            .then(response => {
-                setPizzasArray(response.data)
-            })
-            .finally(() => {
-                setProgress(100)
-            })
-
-        // fetch(base_url + "pizzas")
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // pizzasArray = data
-        //         setPizzasArray(data)
-        //     })
-        //     .finally(() => {
-        //         setProgress(100)
-        //     })
     },[])
 
 
@@ -75,13 +50,12 @@ function AdminPage({ setPath, isProdCreated, setIsProdCreated, pizzasSection }) 
     
 
 
-
+    if (error) return <h1>Что-то пошло не так!</h1>
     return (
         <div className={`container ${css.wrapper}`}>
             <LoadingBar 
                 color={`rgb(255, 105, 0)`} 
                 progress={progress} 
-                onLoaderFinished={() => setProgress(0)} 
             />
 
             <Link to='/admin/create-pizza'>
@@ -93,7 +67,7 @@ function AdminPage({ setPath, isProdCreated, setIsProdCreated, pizzasSection }) 
 
                 <div className={"pizzasWrapper"}>
                     {
-                        pizzasArray.map(elem => <PizzaCard key={elem.id} {...elem} isAdmin={true} setPizzasArray={setPizzasArray} />)
+                        pizzasArray.map(elem => <PizzaCard key={elem.id} {...elem} isAdmin={true} />)
                     }
                 </div>
             </section>

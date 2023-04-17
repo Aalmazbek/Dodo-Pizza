@@ -23,7 +23,7 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { loginAction } from './redux/slices/authSlice';
-import { fetchData } from './redux/slices/pizzasSlice';
+import { fetchData, fetchPizzas } from './redux/slices/pizzasSlice';
 
 
 
@@ -74,27 +74,14 @@ function App() {
 
 
   const [isCart, setIsCart] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const progress = useSelector(state => state.pizzas.progress)
+  const isLoading = useSelector(state => state.pizzas.isLoading)
 
 
   useEffect(() => {
     window.addEventListener('scroll', () => checkNavPosition(nav, 95))
-    document.querySelector('.loading-cover').style.transition = '0s'
-    document.querySelector('.loading-cover').style.opacity = '1'
-
-    setProgress(30)
-    setTimeout(() => {
-        setProgress(60)
-    }, 100)
-    getPizzas()
-      .then(response => dispatch(fetchData(response.data)))
-      .finally(() => {
-        setProgress(100)
-        setTimeout(() => {
-          document.querySelector('.loading-cover').style.transition = '1s'
-          document.querySelector('.loading-cover').style.opacity = '0'
-        }, 3000)
-      })
+    
+    dispatch(fetchPizzas())
   }, [])
 
   useEffect(() => {
@@ -103,7 +90,17 @@ function App() {
     } else{
       document.querySelector('body').style.overflow = 'overlay'
     }
-  }, [isCart])
+
+    if (isLoading) {
+      document.querySelector('.loading-cover').style.transition = '0s'
+      document.querySelector('.loading-cover').style.opacity = '1'
+    } else{
+      setTimeout(() => {
+        document.querySelector('.loading-cover').style.transition = '1s'
+        document.querySelector('.loading-cover').style.opacity = '0'
+      }, 100)
+    }
+  }, [isCart, isLoading])
 
 
 
@@ -130,12 +127,6 @@ function App() {
       <Footer />
       
       <NavModal isCart={isCart} setIsCart={setIsCart} />
-
-      <LoadingBar 
-        color={`rgb(255, 105, 0)`} 
-        progress={progress} 
-        onLoaderFinished={() => setProgress(0)} 
-      />
 
       <div className='loading-cover'></div>
     </div>

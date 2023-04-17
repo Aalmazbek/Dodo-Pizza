@@ -7,14 +7,14 @@ import { deletePizza, getPizzas } from '../../api/api'
 import { useDispatch, useSelector } from 'react-redux'
 import CountButton from '../CountButton/CountButton'
 import { addToCart, deleteFromCart } from '../../redux/slices/cartSlice'
-import { removePizza } from '../../redux/slices/pizzasSlice'
+import { fetchData, fetchDeletePizza, removePizza } from '../../redux/slices/pizzasSlice'
 
 
 
 
 
 
-function PizzaCard({id, name, description, price, image, variant, button, isAdmin, setPizzasArray}) {
+function PizzaCard({id, name, description, price, image, variant, button, isAdmin}) {
   const dispatch = useDispatch()
 
 
@@ -22,37 +22,19 @@ function PizzaCard({id, name, description, price, image, variant, button, isAdmi
     const res = window.confirm("Вы действительно хотите удалить " + name + " ?")
 
     if (res) {
-
-      const deleteFunc1 = async () => {
-        const d1 = await dispatch(removePizza(pizzaId))
-        const d2 = await getPizzas()
-                    .then(res => {
-                      const deletedId = (res.data).findIndex(item => item.id === pizzaId)
-                      res.data.splice(deletedId, 1)
-                      setPizzasArray(res.data)
-                    })
-      }
-
-      deleteFunc1()
-
-      // fetch(base_url + "pizzas/" + pizzaId, {method: 'DELETE'})
-      //   .finally(
-      //     fetch(base_url + "pizzas")
-      //       .then(response => response.json())
-      //       .then(data => {
-      //         let deletedId = data.findIndex(item => item.id === pizzaId)
-      //         data.splice(deletedId, 1)
-      //         setPizzasArray(data)
-      //       })
-      //   )
+      dispatch(fetchDeletePizza(pizzaId))
     }
   }
 
+
+
   let data = useSelector(state => state.cart.data)
+
   let amount = ''
   if (data[data.findIndex(item => item.id === id)]) {
     amount = data[data.findIndex(item => item.id == id)].amount
   }
+  
   const totalAmount = data.reduce((sum, curr) => sum += curr.amount, 0)
 
   const handleAddToCart = () => {

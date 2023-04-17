@@ -93,6 +93,8 @@ ul{
   left: 0;
   z-index: 300;
 
+  pointer-events: none;
+
   transition: 1s;
 }
 

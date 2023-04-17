@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { postPizza } from '../../api/api'
-import { addPizza } from '../../redux/slices/pizzasSlice'
-import { useDispatch } from 'react-redux'
+import { addPizza, fetchCreatePizza, setPending } from '../../redux/slices/pizzasSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 function checkSpaces(str) {
@@ -22,20 +22,22 @@ function CreatePizzaPage({ setPath, setIsProdCreated }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const { progress, pizzasData: pizzasArray, isLoading, error, isCreating } = useSelector(state => state.pizzas)
+
+
   useEffect(() => {
     setPath('/admin/create-pizza')
-
-    setProgress(30)
-    setTimeout(() => {
-      setProgress(100)
-    }, 300)
   },[])
 
+  useEffect(() => {
+    if (isCreating === 'success') {
+      setIsProdCreated(true)
+      navigate('/admin')
+    }
+  }, [isCreating])
 
-  const [progress, setProgress] = useState(0)
 
-  const [isSending, setSending] = useState(false)
-
+  
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [image, setImage] = useState('')
@@ -53,12 +55,10 @@ function CreatePizzaPage({ setPath, setIsProdCreated }) {
     if (!checkSpaces(name)) {
       setName('')
     }
-    setSending(true)
 
     if (!checkSpaces(name) || !checkSpaces(description) || !checkSpaces(image) || !checkSpaces(price)) {
       return
     }
-    setProgress(30)
 
     let select = document.querySelector('#createPizza-type-select')
     
@@ -74,17 +74,12 @@ function CreatePizzaPage({ setPath, setIsProdCreated }) {
 
 
     if (data.type == 'Пицца') {
-      dispatch(addPizza(data))
-        setSending(false)
-        setProgress(100)
-        setTimeout(() => {
-          setIsProdCreated(true)
-          navigate('/admin')  
-        }, 300)
+      dispatch(fetchCreatePizza(data))
+      setTimeout(() => {
+        dispatch(setPending('idle'))
+      }, 500)
     } else{
       setTimeout(() => {
-        setProgress(100)
-        setSending(false)
         alert('Пока только пиццы')
       }, 300)
     }
@@ -99,7 +94,6 @@ function CreatePizzaPage({ setPath, setIsProdCreated }) {
       <LoadingBar 
         color={`rgb(255, 105, 0)`} 
         progress={progress} 
-        onLoaderFinished={() => setProgress(0)}
       />
       <h1>Создать</h1>
       <form className={css.form} onSubmit={handleSubmit}>
@@ -135,7 +129,7 @@ function CreatePizzaPage({ setPath, setIsProdCreated }) {
         </label>
 
         <label className={css.button}>
-          <Button variant={isSending ? 'disabled' : '' } title={isSending ? 'Создание..' : 'Создать'} disabled={isSending ? true : false}/>
+          <Button variant={isCreating === 'pending' ? 'disabled' : '' } title={isCreating === 'pending' ? 'Создание..' : 'Создать'} disabled={isCreating === 'pending' ? true : false}/>
         </label>
       </form>
     </div>

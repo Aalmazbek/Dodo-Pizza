@@ -18,31 +18,17 @@ import { fetchData } from '../../redux/slices/pizzasSlice'
 
 
 const HomePage = ({ pizzasSection, setPath }) => {
-    const pizzasArray = useSelector(state => state.pizzas.data)
-    const dispatch = useDispatch()
-    // const [pizzasArray, setPizzasArray] = useState([])
-    const [progress, setProgress] = useState(0)
-    // console.log(pizzasArray);
+    const { progress, pizzasData: pizzasArray, isLoading, error } = useSelector(state => state.pizzas)
     
     useEffect(() => {
         setPath('/')
-        console.log(pizzasArray);
-        // setProgress(30)
-        // setTimeout(() => {
-        //     setProgress(60)
-        // }, 100)
-        // getPizzas()
-        //     .then(response => dispatch(fetchData(response.data)))
-        //     .finally(() => {
-        //         setProgress(100)
-        //     })
     },[])
 
 
 
 
    
-
+    if (error) return <h1>Что-то пошло не так!</h1>
     return (
         <>
 
@@ -58,6 +44,11 @@ const HomePage = ({ pizzasSection, setPath }) => {
                     }
                 </div>
             </section>
+
+            <LoadingBar 
+                color={`rgb(255, 105, 0)`} 
+                progress={progress} 
+            />
         </>
   )
 }

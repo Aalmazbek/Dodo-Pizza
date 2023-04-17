@@ -74,13 +74,13 @@
     position: absolute;
     top: calc(50% - 12px);
     right: 500px;
-    transition: 0.3s;
+    transition: 0.4s;
     z-index: 100;
     pointer-events: all;
 }
 
 
-.emptyCart button svg{
+.closeButton svg{
     transition: 0.5s;
 }
 
@@ -90,6 +90,7 @@
 
 .hideButton{
     opacity: 0;
+    right: -50px;
 }
 
 
