@@ -73,8 +73,10 @@
 .closeButton{
     position: absolute;
     top: calc(50% - 12px);
-    left: -17%;
+    right: 500px;
     transition: 0.3s;
+    z-index: 100;
+    pointer-events: all;
 }
 
 
@@ -82,7 +84,7 @@
     transition: 0.5s;
 }
 
-.emptyCart button svg:hover{
+.closeButton svg:hover{
     transform: rotate(180deg);
 }
 
@@ -109,7 +111,7 @@
     z-index: 10;
 
     background-color: rgb(243,243,247);
-    overflow: overlay;
+    overflow-y: overlay;
 
     pointer-events: all;
 

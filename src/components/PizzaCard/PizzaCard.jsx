@@ -5,25 +5,35 @@ import { base_url } from '../../constants/api_constant'
 import axios from 'axios'
 import { deletePizza, getPizzas } from '../../api/api'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, deleteFromCart } from '../../redux'
 import CountButton from '../CountButton/CountButton'
+import { addToCart, deleteFromCart } from '../../redux/slices/cartSlice'
+import { removePizza } from '../../redux/slices/pizzasSlice'
+
+
+
+
+
 
 function PizzaCard({id, name, description, price, image, variant, button, isAdmin, setPizzasArray}) {
+  const dispatch = useDispatch()
 
-  const deletePizzaFunc = (pizzaId) => {
+
+  const deletePizzaFunc = async (pizzaId) => {
     const res = window.confirm("Вы действительно хотите удалить " + name + " ?")
 
     if (res) {
-      deletePizza(pizzaId)
-        .finally(
-          getPizzas()
-            .then(res => {
-              const deletedId = (res.data).findIndex(item => item.id === pizzaId)
-              res.data.splice(deletedId, 1)
-              setPizzasArray(res.data)
-            })
-        )
-        
+
+      const deleteFunc1 = async () => {
+        const d1 = await dispatch(removePizza(pizzaId))
+        const d2 = await getPizzas()
+                    .then(res => {
+                      const deletedId = (res.data).findIndex(item => item.id === pizzaId)
+                      res.data.splice(deletedId, 1)
+                      setPizzasArray(res.data)
+                    })
+      }
+
+      deleteFunc1()
 
       // fetch(base_url + "pizzas/" + pizzaId, {method: 'DELETE'})
       //   .finally(
@@ -44,7 +54,6 @@ function PizzaCard({id, name, description, price, image, variant, button, isAdmi
     amount = data[data.findIndex(item => item.id == id)].amount
   }
   const totalAmount = data.reduce((sum, curr) => sum += curr.amount, 0)
-  const dispatch = useDispatch()
 
   const handleAddToCart = () => {
     if (totalAmount === 100) {

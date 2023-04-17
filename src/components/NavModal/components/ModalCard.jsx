@@ -1,19 +1,19 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromCart } from "../../../redux";
+import { deleteFromCart } from "../../../redux/slices/cartSlice";
 import CountButton from "../../CountButton/CountButton";
 
 import css from "../NavModal.module.css";
 
-function ModalCard({ elem }) {
+function ModalCard({ id, image, name, description, price, amount }) {
 
-  const amount = useSelector(state => state.cart.data[state.cart.data.findIndex(item => item.id === elem.id)].amount)
+  // const amount = useSelector(state => state.cart.data[state.cart.data.findIndex(item => item.id === elem.id)].amount)
   const dispatch = useDispatch()
   
   const deleteProd = () => {
     setTimeout(() => {
-      dispatch(deleteFromCart(elem.id))
+      dispatch(deleteFromCart(id))
     }, 500)
   }
 
@@ -29,11 +29,11 @@ function ModalCard({ elem }) {
     <div className={css.card}>
       <div className={css.cardTop}>
         <div>
-          <img src={elem.image} alt="" />
+          <img src={image} alt="" />
 
           <div>
-            <p>{elem.name}</p>
-            <p>{elem.description}</p>
+            <p>{name}</p>
+            <p>{description}</p>
           </div>
         </div>
 
@@ -50,9 +50,9 @@ function ModalCard({ elem }) {
       <hr className={css.betweenTopBottomLine} />
 
       <div className={css.cardBottom}>
-        <p>{elem.price} сом</p>
+        <p>{price} сом</p>
 
-        <CountButton variant='small' amount={elem.amount} id={elem.id} deleteProd={deleteProd} />
+        <CountButton variant='small' amount={amount} id={id} deleteProd={deleteProd} />
       </div>
     </div>
   );

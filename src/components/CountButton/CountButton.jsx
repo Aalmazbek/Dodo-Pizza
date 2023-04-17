@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { decreaseAmount, increaseAmount } from '../../redux'
+import { decreaseAmount, increaseAmount } from '../../redux/slices/cartSlice'
 import css from './CountButton.module.css'
 
 function CountButton({ amount, id, deleteProd, variant }) {

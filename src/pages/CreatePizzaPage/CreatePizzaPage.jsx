@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { postPizza } from '../../api/api'
+import { addPizza } from '../../redux/slices/pizzasSlice'
+import { useDispatch } from 'react-redux'
 
 
 function checkSpaces(str) {
@@ -18,6 +20,7 @@ function checkSpaces(str) {
 
 function CreatePizzaPage({ setPath, setIsProdCreated }) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setPath('/admin/create-pizza')
@@ -43,8 +46,9 @@ function CreatePizzaPage({ setPath, setIsProdCreated }) {
     setValue(e.target.value)
   }
 
+
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!checkSpaces(name)) {
       setName('')
@@ -67,20 +71,16 @@ function CreatePizzaPage({ setPath, setIsProdCreated }) {
     }
     console.log(data);
 
-    let fetchData = {headers: { "Content-Type": "application/json" }}
+
 
     if (data.type == 'Пицца') {
-      postPizza(data, fetchData)
-        .finally(() => {
-          setSending(false)
-          setProgress(100)
-        })
-        .then(res => {
-          if (res.status) {
-            setIsProdCreated(true)
-            navigate('/admin')
-          }
-        })
+      dispatch(addPizza(data))
+        setSending(false)
+        setProgress(100)
+        setTimeout(() => {
+          setIsProdCreated(true)
+          navigate('/admin')  
+        }, 300)
     } else{
       setTimeout(() => {
         setProgress(100)

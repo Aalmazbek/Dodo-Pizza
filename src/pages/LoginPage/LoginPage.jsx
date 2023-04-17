@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
 import { ToastContainer, toast, Flip } from 'react-toastify'
@@ -8,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Button from '../../components/Button/Button'
 import css from './LoginPage.module.css'
+import { loginAction } from '../../redux/slices/authSlice';
 
 
 let account = {
@@ -15,7 +17,7 @@ let account = {
     password: 'admin'
 }
 
-function LoginPage({ setPath, setAuth }) {
+function LoginPage({ setPath }) {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
@@ -24,11 +26,13 @@ function LoginPage({ setPath, setAuth }) {
 
     const navigate = useNavigate()
 
+    const dispatch = useDispatch()
+
     const submit = (e) => {
         e.preventDefault()
 
         if (account.login === login && account.password === password) {
-            setAuth(true)
+            dispatch(loginAction(true))
         }   else{
             notify()
             setLogin('')

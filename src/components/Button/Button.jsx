@@ -2,7 +2,9 @@ import css from './Button.module.css'
 
 const Button = ({title, variant, totalAmount, ...props}) => {
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter = (e) => {
+        console.log(e);
+        
         const amount = document.querySelector('.total-amount')
         const arrow = document.querySelector('.cart-button-arrow')
 
@@ -14,7 +16,8 @@ const Button = ({title, variant, totalAmount, ...props}) => {
         }
     }
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (e) => {
+        console.log(e);
         const amount = document.querySelector('.total-amount')
         const arrow = document.querySelector('.cart-button-arrow')
 
@@ -37,8 +40,8 @@ const Button = ({title, variant, totalAmount, ...props}) => {
                 ${variant === 'fourth' ? css.fourth : ""} 
                 ${variant === 'disabled' ? css.disabled : ""}`
             }
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={totalAmount ? handleMouseEnter : null}
+            onMouseLeave={totalAmount ? handleMouseLeave : null}
         >
         {totalAmount ? (
             <>
@@ -46,7 +49,7 @@ const Button = ({title, variant, totalAmount, ...props}) => {
                 <hr />
                 <p className='total-amount'>{totalAmount}</p>
                 <div className={`cart-button-arrow ${css.arrow}`}>
-                    <svg width="13" height="11" viewBox="0 0 13 11" fill="none" class="xlo7eb-9 ijMcBz"><path d="M1 5.483h11m0 0L7.286 1M12 5.483L7.286 10" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <svg width="13" height="11" viewBox="0 0 13 11" fill="none" className="xlo7eb-9 ijMcBz"><path d="M1 5.483h11m0 0L7.286 1M12 5.483L7.286 10" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                 </div>
             </>
         ) : title}

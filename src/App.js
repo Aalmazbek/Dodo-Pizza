@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
+
+import { getPizzas } from './api/api';
 import './App.css';
 import Button from './components/Button/Button';
 import Footer from './components/Footer/Footer';
-
 import Header from './components/Header/Header';
 import MainSlider from './components/MainSlider/MainSlider';
 import Nav from './components/Nav/Nav';
@@ -19,14 +22,16 @@ import CreatePizzaPage from './pages/CreatePizzaPage/CreatePizzaPage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import { loginAction } from './redux/slices/authSlice';
+import { fetchData } from './redux/slices/pizzasSlice';
 
-const authLocal = JSON.parse(localStorage.getItem('isAuth'))
 
 
-const cart = []
 
 function App() {
-  const [isAuth, setAuth] = useState(authLocal)
+  const isAuth = useSelector(state => state.auth.isAuth)
+
+  const dispatch = useDispatch()
   // useEffect(() => {
   //   // if (JSON.parse(localStorage.getItem('isAuth'))) {
   //   //   setAuth(JSON.parse(localStorage.getItem('isAuth')))
@@ -35,10 +40,6 @@ function App() {
   // },[isAuth])
 
   const [isProdCreated, setIsProdCreated] = useState(false)
-
-  const logout = () => {
-    setAuth(false)
-  }
 
 
   const navigate = useNavigate()
@@ -73,12 +74,27 @@ function App() {
 
 
   const [isCart, setIsCart] = useState(false)
+  const [progress, setProgress] = useState(0)
 
 
   useEffect(() => {
-    localStorage.setItem('isAuth', isAuth)
-
     window.addEventListener('scroll', () => checkNavPosition(nav, 95))
+    document.querySelector('.loading-cover').style.transition = '0s'
+    document.querySelector('.loading-cover').style.opacity = '1'
+
+    setProgress(30)
+    setTimeout(() => {
+        setProgress(60)
+    }, 100)
+    getPizzas()
+      .then(response => dispatch(fetchData(response.data)))
+      .finally(() => {
+        setProgress(100)
+        setTimeout(() => {
+          document.querySelector('.loading-cover').style.transition = '1s'
+          document.querySelector('.loading-cover').style.opacity = '0'
+        }, 3000)
+      })
   }, [])
 
   useEffect(() => {
@@ -97,7 +113,7 @@ function App() {
       <Nav ref={nav} scrollTo={scrollTo} pizzasSection={pizzasSection} isCart={isCart} setIsCart={setIsCart} />
 
       <div className='container'>
-        {isAuth ? <Button title='Выйти' onClick={() => setAuth(false)} /> : ''}
+        {isAuth ? <Button title='Выйти' onClick={() => dispatch(loginAction(false))} /> : ''}
       </div>
 
       <Routes>
@@ -107,13 +123,21 @@ function App() {
         <Route path='/aboutus' element={<AboutUsPage setPath={setPath} />} />
         <Route path='/admin' element={<PrivateRoute Component={() => <AdminPage setPath={setPath} isProdCreated={isProdCreated} setIsProdCreated={setIsProdCreated} pizzasSection={pizzasSection} />} isAuth={isAuth} />} />
         <Route path='/admin/create-pizza' element={<PrivateRoute Component={() => <CreatePizzaPage setPath={setPath} setIsProdCreated={setIsProdCreated} />} isAuth={isAuth} />} />
-        <Route path='/login' element={<PublicRoute Component={() => <LoginPage setPath={setPath} setAuth={setAuth} />} isAuth={isAuth} />} />
+        <Route path='/login' element={<PublicRoute Component={() => <LoginPage setPath={setPath} />} isAuth={isAuth} />} />
         <Route path='*' element={<NotFoundPage setPath={setPath} />} />
       </Routes>
 
       <Footer />
       
-      <NavModal cart={cart} isCart={isCart} setIsCart={setIsCart} />
+      <NavModal isCart={isCart} setIsCart={setIsCart} />
+
+      <LoadingBar 
+        color={`rgb(255, 105, 0)`} 
+        progress={progress} 
+        onLoaderFinished={() => setProgress(0)} 
+      />
+
+      <div className='loading-cover'></div>
     </div>
   );
 }
