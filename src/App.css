@@ -33,7 +33,7 @@ ul{
 }
 
 .App > div{
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 

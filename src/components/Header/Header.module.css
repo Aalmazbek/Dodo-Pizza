@@ -206,6 +206,12 @@
 
 
 
+.burgerMenu{
+    display: none!important;
+}
+
+
+
 
 
 
@@ -226,5 +232,9 @@
 
     .rating, .phone, .personals{
         display: none!important;
-    }   
+    }
+
+    .burgerMenu{
+        display: flex!important;
+    }
 }
