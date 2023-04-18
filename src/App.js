@@ -30,22 +30,22 @@ import { fetchData, fetchPizzas } from './redux/slices/pizzasSlice';
 
 function App() {
   const isAuth = useSelector(state => state.auth.isAuth)
-
+  
   const dispatch = useDispatch()
   // useEffect(() => {
-  //   // if (JSON.parse(localStorage.getItem('isAuth'))) {
-  //   //   setAuth(JSON.parse(localStorage.getItem('isAuth')))
-  //   // }
-
-  // },[isAuth])
+    //   // if (JSON.parse(localStorage.getItem('isAuth'))) {
+      //   //   setAuth(JSON.parse(localStorage.getItem('isAuth')))
+      //   // }
+      
+      // },[isAuth])
 
   const [isProdCreated, setIsProdCreated] = useState(false)
-
-
+  
+  
   const navigate = useNavigate()
   const [path, setPath] = useState('/')
   const pizzasSection = useRef(null)
-
+  
   const scrollTo = (elem) => {
     if (path === '/') {
       elem.current.scrollIntoView({behavior: 'smooth'})
@@ -56,10 +56,11 @@ function App() {
       }, 500)
     }
   }
-
-
+  
+  
   const nav = useRef()
   
+  let navOffsetTop
   const checkNavPosition = (item, initialOffset) => {
     let itemOffsetTop = item.current.offsetTop
     
@@ -68,7 +69,7 @@ function App() {
       item.current.firstElementChild.firstElementChild.firstElementChild.style.transform = 'translate(0px)'
     } else{
       item.current.classList.remove('nav-shadow')
-      item.current.firstElementChild.firstElementChild.firstElementChild.style.transform = 'translate(-55px)'
+      item.current.firstElementChild.firstElementChild.firstElementChild.style.transform = 'translate(-45px)'
     }
   }
 

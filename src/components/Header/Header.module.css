@@ -222,3 +222,9 @@
 
 
 
+@media screen and (max-width: 576px) {
+
+    .rating, .phone, .personals{
+        display: none!important;
+    }   
+}

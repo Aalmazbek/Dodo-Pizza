@@ -84,3 +84,21 @@ button::before{
 /* .slick-disabled{
     display: none;
 } */
+
+
+
+
+@media screen and (max-width: 576px) {
+    .wrapper{
+        margin: 20px 0;
+    }
+
+
+    .CustomSlide{
+        height: 29vw;
+    }
+
+    .CustomSlide > div{
+        border: 2px solid rgb(255, 105, 0);
+    }
+}

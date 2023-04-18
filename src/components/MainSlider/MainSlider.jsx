@@ -55,6 +55,13 @@ const MainSlider = () => {
         nextArrow: <NextArrow />,
         responsive: [
             {
+                breakpoint: 576,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 4,
+                }
+            },
+            {
               breakpoint: 1440,
               settings: {
                 slidesToShow: 5,
@@ -69,7 +76,7 @@ const MainSlider = () => {
               }
             },
             {
-              breakpoint: 480,
+              breakpoint: 576,
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1

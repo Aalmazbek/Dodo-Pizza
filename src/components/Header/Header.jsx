@@ -112,7 +112,15 @@ const Header = ({  }) => {
                         <p>Кабинет</p>
                     </Link>
                 </div>
+
+                <div id='burger-menu' className={css.burgerMenu}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zM4 12a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zM5 16a1 1 0 100 2h14a1 1 0 100-2H5z" fill="#000"></path></svg>
+                </div>
             </header>
+
+            <div id='header-mobile-modal' className={css.headerMobileModal}>
+
+            </div>
         </div>
     )
 }

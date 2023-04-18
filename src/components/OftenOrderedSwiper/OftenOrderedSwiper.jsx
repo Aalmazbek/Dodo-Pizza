@@ -31,6 +31,12 @@ const OftenOrderedSwiper = () => {
             className={css.Swiper}
             slidesPerView={5.5}
             spaceBetween={30}
+            breakpoints={{
+                // when window width is >= 640px
+                0: {
+                  slidesPerView: 3.6,
+                },
+              }}
         >
             <SwiperSlide>
             </SwiperSlide>

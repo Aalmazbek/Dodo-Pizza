@@ -26,6 +26,23 @@ ul{
 
 
 
+
+.App{
+  display: flex;
+  flex-direction: column;
+}
+
+.App > div{
+  overflow-x: hidden;
+}
+
+
+
+
+
+
+
+
 .nav-shadow{
   box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
@@ -34,10 +51,11 @@ ul{
 
 
 .container{
+  width: 85%;
   min-width: 950px;
   max-width: 1280px;
   
-  margin: 0 8%;
+  margin: 0 auto;
 }
 
 
@@ -63,6 +81,7 @@ ul{
   /* padding-top: 90px; */
   margin-top: 40px;
   scroll-margin-top: 80px;
+
 }
 
 
@@ -119,15 +138,31 @@ ul{
 
 
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 576px) {
   .container{
+    width: 100%;
     min-width: 0px;
 
-    margin: 0 1%;
+    padding: 0 1%;
   }
 
 
   .pizzasSection{
     scroll-margin-top: 30px;
   }
+
+
+  .title{
+    padding: 0 2%;
+    margin-bottom: 30px;
+
+    font-size: 26px;
+    font-weight: 400;
+  }
+
+
+
+  .pizzasWrapper{
+    flex-direction: column;
+  } 
 }
