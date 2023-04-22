@@ -55,6 +55,16 @@ h2{
 
 
 
+@media screen and (max-width: 1200px) {
+    .swiperStart{
+        background-color: red;
+    }
+}
+
+
+
+
+
 @media screen and (max-width: 576px) {
     .swiperStart{
         background-color: red;

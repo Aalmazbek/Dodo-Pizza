@@ -228,7 +228,7 @@
 
 
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
 
     .rating, .phone, .personals{
         display: none!important;

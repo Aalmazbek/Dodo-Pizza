@@ -76,7 +76,7 @@ function PizzaCard({id, name, description, price, image, variant, button, isAdmi
         </div>
 
         <div>
-            <h3 className={css.title}>{name === "Мексиканская" ? name + " 🌶️🌶️" : name}</h3>
+            <h3 className={css.title}>{name}</h3>
             <p className={css.description}>{description}</p>
         </div>
 
@@ -84,7 +84,7 @@ function PizzaCard({id, name, description, price, image, variant, button, isAdmi
             <h2 className={css.price}>от {Number(price).toFixed(0)} сом</h2>
             {
               isAdmin ? (
-                <Button title={"Удалить"} variant={'second'} onClick={() => deletePizzaFunc(id)} />
+                <Button title={"Удалить"} variant={'second'} onClick={() => deletePizzaFunc(id)} /> 
               ) : (
                 amount ? (
                   <CountButton amount={amount} id={id} deleteProd={deleteProd} />

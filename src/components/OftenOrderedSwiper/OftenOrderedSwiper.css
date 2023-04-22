@@ -64,6 +64,18 @@
 
 
 
+@media screen and (max-width: 1200px) {
+    .swiper-slide:nth-of-type(1){
+        max-width: 2vw;
+        margin: 0!important;
+        padding: 0;
+    }
+}
+
+
+
+
+
 @media screen and (max-width: 576px) {
     .swiper-slide:nth-of-type(1){
         max-width: 0px;

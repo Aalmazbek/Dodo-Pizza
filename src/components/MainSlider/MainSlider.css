@@ -5,10 +5,69 @@
 
 
 .slick-slide{
-    /* max-width: 250px; */
+    width: 200px!important;
+    height: 250px!important;
     padding: 0 7px;
 }
 
+
+.slick-slide div{
+    height: 100%;
+}
+
+
+
 .slick-disabled{
     opacity: 0!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+    .slick-slide{
+        width: calc(200px*0.9)!important;
+        height: calc(250px*0.9)!important;
+        padding: 0 5px;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 992px) {
+    .slick-slide{
+        width: calc(200px*0.8)!important;
+        height: calc(250px*0.8)!important;
+        padding: 0 5px;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 576px) {
+    .slick-slide{
+        width: calc(200px*0.7)!important;
+        height: calc(250px*0.7)!important;
+        padding: 0 5px;
+    }
 }

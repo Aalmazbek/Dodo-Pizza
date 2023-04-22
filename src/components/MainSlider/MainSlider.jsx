@@ -32,7 +32,9 @@ const CustomSlide = (props) => {
     return(
         <div {...props} className={css.CustomSlide} >
             <div>
-                <img src="https://picsum.photos/350/440" alt="" />
+                <div className={css.image} style={{backgroundImage: `url(${props.image})`}}>
+
+                </div>
             </div>
         </div>
     )
@@ -44,42 +46,39 @@ const CustomSlide = (props) => {
 
 const MainSlider = () => {
     const settings = {
-        // className: "slider variable-width",
-        // variableWidth: true,
+        className: "slider variable-width",
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
+        slidesToShow: 1,
+        slidesToScroll: 3,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
+        variableWidth: true,
         responsive: [
-            {
-                breakpoint: 576,
-                settings: {
-                  slidesToShow: 4,
-                  slidesToScroll: 4,
-                }
-            },
             {
               breakpoint: 1440,
               settings: {
-                slidesToShow: 5,
-                slidesToScroll: 5,
               }
             },
             {
-              breakpoint: 1228,
+              breakpoint: 1200,
               settings: {
-                slidesToShow: 4.5,
-                slidesToScroll: 4,
+              }
+            },
+            {
+              breakpoint: 1075,
+              settings: {
+              }
+            },
+            {
+              breakpoint: 992,
+              settings: {
               }
             },
             {
               breakpoint: 576,
               settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
               }
             }
           ]
@@ -87,18 +86,18 @@ const MainSlider = () => {
     return (
         <div className={css.wrapper + " container"}>
             <Slider className={css.sliderContainer} {...settings}>
-                <CustomSlide index={1}/>
-                <CustomSlide index={2}/>
-                <CustomSlide index={3}/>
-                <CustomSlide index={4}/>
-                <CustomSlide index={5}/>
-                <CustomSlide index={6}/>
-                <CustomSlide index={7}/>
-                <CustomSlide index={8}/>
-                <CustomSlide index={9}/>
-                <CustomSlide index={10}/>
-                <CustomSlide index={11}/>
-                <CustomSlide index={12}/>
+                <CustomSlide index={1} style={{ width: 200, height: 250}} image='https://cdn.inappstory.com/story/xj3/vlp/vvn/n6wwl1vplztiwzlmhmfhvkd/custom_cover/logo-350x440.jpg?v=1677755749'/>
+                <CustomSlide index={2} image='https://cdn.inappstory.com/story/zxo/hwn/ioa/zcge6fzhsizjzwzlbcpcbuh/custom_cover/logo-350x440.jpg?v=1677755402'/>
+                <CustomSlide index={3} image='https://cdn.inappstory.com/story/asy/5ei/gjt/txba6apkocdyfg09njqxekg/custom_cover/logo-350x440.jpg?v=1680274751'/>
+                <CustomSlide index={4} image='https://cdn.inappstory.com/story/trk/dhv/vfv/lvxhprztx7os3cjfnj14e9o/custom_cover/logo-350x440.jpg?v=1679291641'/>
+                <CustomSlide index={5} image='https://cdn.inappstory.com/story/a1m/6fm/f6k/0jqhrleogoqn5twqow7afg3/custom_cover/logo-350x440.jpg?v=1675356813'/>
+                <CustomSlide index={6} image='https://cdn.inappstory.com/story/vxp/0op/pyj/eaxaldsys3rwssa6qptgw1x/custom_cover/logo-350x440.jpg?v=1675357131'/>
+                <CustomSlide index={7} image='https://cdn.inappstory.com/story/v5h/bqf/nlf/h4xvpnpeqwqziv4zxll1kmj/custom_cover/logo-350x440.jpg?v=1675357139'/>
+                <CustomSlide index={8} image='https://cdn.inappstory.com/story/2yt/hge/s5e/0psdbtctopuph5my38jknyb/custom_cover/logo-350x440.jpg?v=1668483834'/>
+                <CustomSlide index={9} image='https://cdn.inappstory.com/story/kn1/ft6/all/5b9m2lrxqdk5anqjr3ylbmt/custom_cover/logo-350x440.jpg?v=1675357152'/>
+                <CustomSlide index={10} image='https://cdn.inappstory.com/story/gio/mne/xuf/o3vbldczhdx4dwames9uaaf/custom_cover/logo-350x440.jpg?v=1675357161'/>
+                <CustomSlide index={11} image='https://cdn.inappstory.com/story/vvj/0ui/9hq/h1c6cadsdmtdipbifbwysi5/custom_cover/logo-350x440.jpg?v=1675357189'/>
+                <CustomSlide index={12} image='https://cdn.inappstory.com/story/ssw/y97/qqi/mgqzaa3lmow6clasjej15nu/custom_cover/logo-350x440.jpg?v=1679563597'/>
             </Slider>
         </div>
     );
