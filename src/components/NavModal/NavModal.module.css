@@ -81,6 +81,8 @@
 
 
 .closeButton svg{
+    fill: white!important;
+
     transition: 0.5s;
 }
 
@@ -274,6 +276,30 @@
 
 
 
+
+
+@media screen and (max-width: 600px) {
+    .content{
+        width: 100%;
+    }
+
+
+    .closeButton{
+        top: 20px;
+        right: 20px;
+    }
+
+
+    .closeButton svg{
+        fill: black!important;
+    }
+
+
+
+    .hideButton{
+        right: -100px;
+    }
+}
 
 
 /* @keyframes rotation {

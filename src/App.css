@@ -20,8 +20,18 @@ ul{
 }
 
 
+.hide{
+  display: none!important;
+}
 
 
+
+
+
+
+body{
+  background-color: white;
+}
 
 
 
@@ -43,9 +53,15 @@ ul{
 
 
 
-.nav-shadow{
+.is-pinned{
   box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
+
+
+.is-pinned #Nav-links{
+  transform: translate(0px);
+}
+
 
 
 
@@ -81,6 +97,7 @@ ul{
   /* padding-top: 90px; */
   margin-top: 40px;
   scroll-margin-top: 80px;
+  order: 20;
 
 }
 

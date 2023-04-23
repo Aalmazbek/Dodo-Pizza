@@ -1,17 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import LoadingBar from 'react-top-loading-bar'
 
-import { getPizzas } from './api/api';
 import './App.css';
 import Button from './components/Button/Button';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import MainSlider from './components/MainSlider/MainSlider';
 import Nav from './components/Nav/Nav';
 import NavModal from './components/NavModal/NavModal';
-import OftenOrderedSwiper from './components/OftenOrderedSwiper/OftenOrderedSwiper';
 import PrivateRoute from './components/routes/PrivateRoute';
 import PublicRoute from './components/routes/PublicRoute';
 import AboutUsPage from './pages/AboutUsPage/AboutUsPage';
@@ -23,7 +19,7 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { loginAction } from './redux/slices/authSlice';
-import { fetchData, fetchPizzas } from './redux/slices/pizzasSlice';
+import { fetchPizzas } from './redux/slices/pizzasSlice';
 
 
 
@@ -32,12 +28,6 @@ function App() {
   const isAuth = useSelector(state => state.auth.isAuth)
   
   const dispatch = useDispatch()
-  // useEffect(() => {
-    //   // if (JSON.parse(localStorage.getItem('isAuth'))) {
-      //   //   setAuth(JSON.parse(localStorage.getItem('isAuth')))
-      //   // }
-      
-      // },[isAuth])
 
   const [isProdCreated, setIsProdCreated] = useState(false)
   
@@ -59,28 +49,26 @@ function App() {
   
   
   const nav = useRef()
-  
-  let navOffsetTop
-  const checkNavPosition = (item, initialOffset) => {
-    let itemOffsetTop = item.current.offsetTop
-    
-    if (itemOffsetTop > initialOffset) {
-      item.current.classList.add('nav-shadow')
-      item.current.firstElementChild.firstElementChild.firstElementChild.style.transform = 'translate(0px)'
-    } else{
-      item.current.classList.remove('nav-shadow')
-      item.current.firstElementChild.firstElementChild.firstElementChild.style.transform = 'translate(-45px)'
-    }
-  }
 
 
   const [isCart, setIsCart] = useState(false)
+  // const [isBurgerMenu, setIsBurgerMenu] = useState(false)
   const progress = useSelector(state => state.pizzas.progress)
   const isLoading = useSelector(state => state.pizzas.isLoading)
 
 
   useEffect(() => {
-    window.addEventListener('scroll', () => checkNavPosition(nav, 95))
+    // window.addEventListener('scroll', () => checkNavPosition(nav, 95))
+    const el = document.querySelector("#Navigation")
+    const observer = new IntersectionObserver( 
+      ([e]) => {
+        e.target.classList.toggle("is-pinned", e.intersectionRatio < 1)
+        // console.log(e.intersectionRatio);
+      },
+      { threshold: [0] }
+    );
+
+    observer.observe(el);
     
     dispatch(fetchPizzas())
   }, [])
@@ -110,7 +98,7 @@ function App() {
       <Header />
       <Nav ref={nav} scrollTo={scrollTo} pizzasSection={pizzasSection} isCart={isCart} setIsCart={setIsCart} />
 
-      <div className='container'>
+      <div className='container' style={{order: 6}}>
         {isAuth ? <Button title='Выйти' onClick={() => dispatch(loginAction(false))} /> : ''}
       </div>
 

@@ -5,8 +5,11 @@
 
 
 .wrapper{
+    padding: 1px 0;
     display: flex;
     flex-direction: column;
+    overflow: visible!important;
+    order: 1;
 }
 
 
@@ -54,7 +57,7 @@
     color: rgba(0, 0, 0, 0.8);
 }
 
-.ratingModal{
+.ratingModal, .headerMobileRatingModal{
     width: 450px;
     min-height: 100px;
     background-color: rgb(65,65,65);
@@ -207,7 +210,151 @@
 
 
 .burgerMenu{
+    width: 35px;
+
+    margin-right: 9px;
     display: none!important;
+}
+
+
+.burgerMenu svg{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+.headerMobileModal{
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+}
+
+.headerMobileModal * {
+    color: white;
+    font-size: 22px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+}
+
+
+
+.headerMobileModal > div:nth-of-type(1n+2){
+    padding: 0 14%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+
+.headerMobileTop{
+    width: 100%;
+    height: 95px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.closeButton{
+    width: 20px;
+
+    margin-right: 17px;    
+}
+
+
+.closeButton svg{
+    width: 100%;
+}
+
+
+
+
+.headerMobileLocation{
+    height: 70px;
+    position: relative;
+}
+
+
+.headerMobileLocation span{
+    position: absolute;
+    left: 5%;
+}
+
+
+
+
+.headerMobileRating{
+    height: 65px;
+    
+    position: relative;
+    gap: 20px;
+}
+
+
+.headerMobileRatingStars{
+    display: flex;
+    
+}
+
+
+.headerMobileRatingStars h2{
+    margin-right: 5px;
+    color: rgb(255,210,0);
+}
+
+
+
+.headerMobileRatingStars svg{
+    width: 20px;
+}
+
+
+
+.infoIcon{
+    width: 25px;
+    height: 25px;
+
+    position: absolute;
+    right: 5%;
+}
+
+
+.infoIcon svg{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+.headerMobileLinks{
+    padding: 0!important;
+    flex-direction: column;
+}
+
+
+.headerMobileLinks a{
+    width: 100%;
+    
+    padding: 15px 14%;
+    margin: 2px 0;
+}
+
+
+.headerMobileRatingModal{
+    opacity: 0;
 }
 
 
@@ -237,4 +384,71 @@
     .burgerMenu{
         display: flex!important;
     }
+}
+
+
+
+
+
+@media screen and (max-width: 576px) {
+    
+    .wrapper{
+        overflow: hidden!important;
+        padding: 0 1%;
+    }
+    
+    
+    .headerMobileModal{
+        display: flex;
+    }
+
+
+    .headerMobileRatingModal{
+        width: 300px;
+        height: fit-content;
+
+        padding: 3%!important;
+        top: 35%;
+        left: 5%;
+        z-index: 350;
+        gap: 15px;
+
+        pointer-events: all;
+    }
+
+
+    .headerMobileRatingModal > div h2 {
+        font-size: 25px;
+        font-weight: 400;
+    }   
+
+
+
+    .headerMobileRatingModal > div p:first-of-type{
+        font-size: 15px;
+        font-weight: 400;
+        color: white;
+    }
+    
+    
+    
+    .headerMobileRatingModal > div p{
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.6);
+        white-space: normal;
+    }
+
+
+
+
+    .headerMobileRatingModal > div:nth-of-type(2) > div:first-of-type{
+        display: flex;
+    }
+    .headerMobileRatingModal > div > div > svg{
+        width: 20px;
+    }
+
+
+
 }

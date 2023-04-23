@@ -1,7 +1,9 @@
 .wrapper{
     width: 85%;
+    
     margin: 20px auto;
     overflow: visible!important;
+    order: 10;
 }
 
 
