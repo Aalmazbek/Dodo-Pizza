@@ -65,7 +65,7 @@ function App() {
         e.target.classList.toggle("is-pinned", e.intersectionRatio < 1)
         // console.log(e.intersectionRatio);
       },
-      { threshold: [0] }
+      { threshold: [1] }
     );
 
     observer.observe(el);
